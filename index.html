@@ -132,6 +132,19 @@
       }
     }, { once: true });
 
+    const music = document.getElementById('bg-music');
+
+    let wasPlaying = false;
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        wasPlaying = !music.paused;
+        music.pause();
+      } else if (wasPlaying) {
+        music.play();
+      }
+    });
+
     function updateSlide() {
       slideWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
       slides.forEach((slide, index) => {
