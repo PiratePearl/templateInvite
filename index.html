@@ -90,6 +90,60 @@
       border-radius: 12px;
     }
 
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #f4e7e7; /* Match your site bg or use darker for contrast */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader-content {
+      font-size: 24px;
+      font-weight: bold;
+      color: #d587c4; /* Stylish color to match your palette */
+    }
+
+    .bouncing-loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .bouncing-loader > div {
+      width: 12px;
+      height: 12px;
+      background: #e079b5; /* Change to your brand color */
+      border-radius: 50%;
+      animation: bounce 0.6s infinite alternate;
+    }
+
+    .bouncing-loader > div:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .bouncing-loader > div:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+      from {
+        transform: translateY(0px);
+        opacity: 0.4;
+      }
+      to {
+        transform: translateY(-15px);
+        opacity: 1;
+      }
+    }
+
 
     @media screen and (max-width: 768px) {
       .carousel {
@@ -104,6 +158,16 @@
   </style>
 </head>
 <body>
+
+  <div id="loader">
+    <div class="loader-content">
+      <div class="bouncing-loader">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
 
   <audio id="bg-music"autoplay loop>
     <source src="img/Purity-Piano-Song.mp3" type="audio/mpeg">
@@ -135,6 +199,14 @@
     const nextBtn = document.querySelector('.next');
     const carousel = document.getElementById('carousel');
     let currentIndex = 0;
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const loader = document.getElementById("loader");
+        loader.style.opacity = "0";
+        setTimeout(() => loader.style.display = "none", 500); // wait for fade
+      }, 30000); // 5 seconds delay
+    });
 
     document.addEventListener('click', () => {
     const music = document.getElementById('bg-music');
