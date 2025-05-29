@@ -66,11 +66,10 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(250, 202, 202, 0.248);
+      background: rgba(250, 202, 202, 0.315);
       border: none;
       color: rgba(255, 255, 255, 0.781);
-      font-size: 20px;
-      padding: 6px;
+      font-size: 16px;
       border-radius: 50%;
       cursor: pointer;
       pointer-events: all;
@@ -87,6 +86,11 @@
 
     .nav-buttons .next {
       right: 20px;
+    }
+
+    .nav-buttons svg {
+      width: 24px;
+      height: 24px;
     }
 
     .carousel-video {
@@ -190,8 +194,17 @@
       <div class="slide"><img src="img/Homecoming.gif" alt="Slide 4"></div>
     </div>
     <div class="nav-buttons">
-      <button class="prev" onclick="prevSlide()" style="display: none;">&#x2190;</button>
-      <button class="next" onclick="nextSlide()">&#x2192;</button>
+      <button onclick="prevSlide()" class="prev" aria-label="Previous slide">
+        <svg width="20" height="20" viewBox="2 0 24 20" fill="none">
+          <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <button onclick="nextSlide()" class="next" aria-label="Next slide">
+        <svg width="20" height="20" viewBox="0 0 24 20" fill="none">
+          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
   </div>
 
