@@ -263,6 +263,7 @@
         slide.classList.toggle('active', index === currentIndex);
       });
       prevBtn.style.display = currentIndex > 0 ? 'block' : 'none';
+      nextBtn.style.display = currentIndex == 3 ? 'none' : 'block';
     }
 
     function nextSlide() {
