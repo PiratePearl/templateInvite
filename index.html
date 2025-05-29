@@ -56,20 +56,21 @@
     }
     .nav-buttons {
       position: absolute;
-      top: 85%;
+      top: 90%;
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
       padding: 0 20px;
       pointer-events: none;
     }
+
     .nav-buttons button {
-      background: rgba(250, 202, 202, 0.389);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(250, 202, 202, 0.248);
       border: none;
       color: rgba(255, 255, 255, 0.781);
-      font-size: 24px;
-      padding: 10px;
+      font-size: 20px;
+      padding: 6px;
       border-radius: 50%;
       cursor: pointer;
       pointer-events: all;
@@ -77,10 +78,15 @@
     }
     .nav-buttons button:hover {
       background: rgba(220, 184, 184, 0.648);
-      transform: scale(1.1);
+      transform: translateY(-50%) scale(1.1);
     }
+
     .nav-buttons .prev {
-      display: none;
+      left: 20px;
+    }
+
+    .nav-buttons .next {
+      right: 20px;
     }
 
     .carousel-video {
@@ -159,7 +165,7 @@
 </head>
 <body>
 
-  <div id="loader">
+  <!-- <div id="loader">
     <div class="loader-content">
       <div class="bouncing-loader">
         <div></div>
@@ -167,7 +173,7 @@
         <div></div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <audio id="bg-music"autoplay loop>
     <source src="img/Purity-Piano-Song.mp3" type="audio/mpeg">
@@ -186,8 +192,8 @@
       <div class="slide"><img src="img/Homecoming.gif" alt="Slide 4"></div>
     </div>
     <div class="nav-buttons">
-      <button class="prev" onclick="prevSlide()">&#x21bd;</button>
-      <button class="next" onclick="nextSlide()">&#x21c0;</button>
+      <button class="prev" onclick="prevSlide()" style="display: none;">&#x1F820;</button>
+      <button class="next" onclick="nextSlide()">&#x1F822;</button>
     </div>
   </div>
 
