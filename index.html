@@ -154,6 +154,17 @@
       }
     }
 
+    .next.delayed {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 5s ease;
+    }
+    .next.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Flip color animation */
     @keyframes flipColor {
       0%, 100% {
         background-color: rgba(250, 202, 202, 0.315); /* your soft pink */
@@ -163,7 +174,7 @@
       }
     }
 
-    .flip-center {
+    .next.flip {
       animation: flipColor 2s ease-in-out infinite;
     }
 
@@ -225,7 +236,7 @@
         </svg>
       </button>
 
-      <button onclick="nextSlide()" class="next flip-center" aria-label="Next slide">
+      <button onclick="nextSlide()" class="next delayed" aria-label="Next slide">
         <span class="icon-wrap">
           <svg width="20" height="20" viewBox="0 0 24 20" fill="none">
             <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -277,14 +288,19 @@
       slides.forEach((slide, index) => {
         slide.classList.toggle('active', index === currentIndex);
       });
-      prevBtn.style.display = currentIndex > 0 ? 'block' : 'none';
-      nextBtn.style.display = currentIndex === totalSlides - 1 ? 'none' : 'block';
 
-      // Flip color only on first slide
+      prevBtn.style.display = currentIndex > 0 ? 'block' : 'none';
+
+      // Reset next button states
+      nextBtn.classList.remove('show', 'delayed', 'flip');
+
       if (currentIndex === 0) {
-        nextBtn.classList.add('flip-center');
+        nextBtn.classList.add('delayed');
+        setTimeout(() => {
+          nextBtn.classList.add('show', 'flip');
+        }, 13000); // Delay before flip + show
       } else {
-        nextBtn.classList.remove('flip-center');
+        nextBtn.classList.add('show');
       }
     }
 
