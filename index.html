@@ -154,6 +154,19 @@
       }
     }
 
+    @keyframes flipColor {
+      0%, 100% {
+        background-color: rgba(250, 202, 202, 0.315); /* your soft pink */
+      }
+      50% {
+        background-color: rgba(242, 175, 175, 0.541); /* white */
+      }
+    }
+
+    .flip-center {
+      animation: flipColor 2s ease-in-out infinite;
+    }
+
 
     @media screen and (max-width: 768px) {
       .carousel {
@@ -212,10 +225,12 @@
         </svg>
       </button>
 
-      <button onclick="nextSlide()" class="next" aria-label="Next slide">
-        <svg width="20" height="20" viewBox="0 0 24 20" fill="none">
-          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <button onclick="nextSlide()" class="next flip-center" aria-label="Next slide">
+        <span class="icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 20" fill="none">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
       </button>
     </div>
   </div>
@@ -263,7 +278,14 @@
         slide.classList.toggle('active', index === currentIndex);
       });
       prevBtn.style.display = currentIndex > 0 ? 'block' : 'none';
-      nextBtn.style.display = currentIndex == 3 ? 'none' : 'block';
+      nextBtn.style.display = currentIndex === totalSlides - 1 ? 'none' : 'block';
+
+      // Flip color only on first slide
+      if (currentIndex === 0) {
+        nextBtn.classList.add('flip-center');
+      } else {
+        nextBtn.classList.remove('flip-center');
+      }
     }
 
     function nextSlide() {
